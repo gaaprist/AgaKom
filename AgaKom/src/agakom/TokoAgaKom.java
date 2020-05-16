@@ -5,8 +5,10 @@
  */
 package agakom;
 
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,8 +21,8 @@ public class TokoAgaKom extends javax.swing.JFrame {
     int volume = 0;
     int harga = 0;
     int a = 0;
-    Queue<String> antrijudul = new LinkedList<String>();
-    Queue<Integer> antrian = new LinkedList<Integer>();
+    Deque<String> antrijudul = new LinkedList<String>();
+    Stack antrian = new Stack();
 
 
 
@@ -33,12 +35,13 @@ public class TokoAgaKom extends javax.swing.JFrame {
         volumekomik1.setVisible(false);
         volumekomik2.setVisible(false);
         cekout.setVisible(false);
-        cek.setVisible(false);
+        jLabel6.setVisible(true);
         reset.setVisible(true);
         kembali.setVisible(false);
         keluar.setVisible(false);
-        
         //setResizable(false);
+        cekout.setLineWrap(true);
+        cekout.setWrapStyleWord(true);
 
 
     }
@@ -52,7 +55,6 @@ public class TokoAgaKom extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cekout = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         judulkomik = new javax.swing.JComboBox<>();
@@ -80,17 +82,15 @@ public class TokoAgaKom extends javax.swing.JFrame {
         kembali = new javax.swing.JButton();
         keluar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        cekout = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AgaKom");
         setMinimumSize(new java.awt.Dimension(700, 650));
         setPreferredSize(new java.awt.Dimension(670, 610));
         getContentPane().setLayout(null);
-
-        cekout.setText("jTextField1");
-        cekout.setMinimumSize(new java.awt.Dimension(100, 100));
-        getContentPane().add(cekout);
-        cekout.setBounds(20, 540, 650, 30);
 
         jPanel1.setOpaque(false);
 
@@ -140,6 +140,7 @@ public class TokoAgaKom extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
                 .addComponent(judulkomik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(volumekomik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,7 +288,7 @@ public class TokoAgaKom extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(20, 100, 255, 369);
+        jPanel1.setBounds(20, 100, 255, 393);
 
         jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel3.setOpaque(false);
@@ -329,7 +330,7 @@ public class TokoAgaKom extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cek);
-        cek.setBounds(100, 510, 160, 23);
+        cek.setBounds(320, 480, 110, 23);
 
         reset.setText("Reset");
         reset.addActionListener(new java.awt.event.ActionListener() {
@@ -350,13 +351,43 @@ public class TokoAgaKom extends javax.swing.JFrame {
         kembali.setBounds(20, 580, 140, 23);
 
         keluar.setText("Keluar");
+        keluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                keluarActionPerformed(evt);
+            }
+        });
         getContentPane().add(keluar);
         keluar.setBounds(523, 580, 130, 23);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\WINDOWS 10 PR0\\Desktop\\522.jpg")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon("E:\\Praktikum\\Praktikum DKP 2020\\AgaKom\\src\\agakom\\522.jpg")); // NOI18N
         jLabel6.setText("jLabel6");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(0, -40, 690, 1478);
+
+        jScrollPane3.setOpaque(false);
+
+        cekout.setColumns(20);
+        cekout.setRows(5);
+        cekout.setAutoscrolls(false);
+        cekout.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                cekoutAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane3.setViewportView(cekout);
+        cekout.getAccessibleContext().setAccessibleParent(jScrollPane1);
+
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(20, 110, 650, 460);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon("E:\\Praktikum\\Praktikum DKP 2020\\AgaKom\\src\\agakom\\522.jpg")); // NOI18N
+        jLabel8.setText("jLabel6");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(0, -40, 690, 1478);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -382,6 +413,7 @@ public class TokoAgaKom extends javax.swing.JFrame {
 
     private void totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalActionPerformed
         // TODO add your handling code here:
+
         int sum = 0;
         int jbayar = 0;
 
@@ -391,6 +423,7 @@ public class TokoAgaKom extends javax.swing.JFrame {
         }
 
         jumlahtotal.setText(Integer.toString(sum));
+        
     }//GEN-LAST:event_totalActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
@@ -407,7 +440,9 @@ public class TokoAgaKom extends javax.swing.JFrame {
                 a--;
                 break;
             }
-            
+        
+        antrijudul.removeLast();
+        antrijudul.removeLast();
 
             
         
@@ -415,7 +450,6 @@ public class TokoAgaKom extends javax.swing.JFrame {
 
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         // TODO add your handling code here:
-        //int pilihpesanan = CB_Pilihpesanan.getSelectedIndex();
         int jdlkomik = judulkomik.getSelectedIndex();
         int vlmkomik = volumekomik.getSelectedIndex();
 
@@ -437,26 +471,6 @@ public class TokoAgaKom extends javax.swing.JFrame {
 
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
 
-        //model.addRow(new Object[]{a, judul, volume, harga});
-        //showMessageDialog(null, "This is even shorter");
-
-        /*switch (vlmkomik) {
-            case (0):
-            showMessageDialog(null, "This is even shorter");
-            break;
-            case (1):
-            model.addRow(new Object[]{a, judul, volume, harga});
-            break;
-            case (2):
-            model.addRow(new Object[]{a, judul, volume, harga});
-            break;
-            case (3):
-            model.addRow(new Object[]{a, judul, volume, harga});
-            break;
-
-        }
-        */
-
         if (judul == "pilih"){
             showMessageDialog(null, "Silakan Pilih Judul Komik");
         }
@@ -469,23 +483,12 @@ public class TokoAgaKom extends javax.swing.JFrame {
                 break;
             }
             model.addRow(new Object[]{a, judul, volume, harga});
+            
+            String volum = Integer.toString(volume);
+            antrijudul.add(judul);
+            antrijudul.add("Volume " + volum);
 
         }
-        
-        /*
-        String volum = Integer.toString(volume);
-        
-        antrijudul.add(judul);
-        antrijudul.add(volum);
-        
-        //uueue<Integer> antrian = new LinkedList<Integer>();
-        //for (String s : antrijudul) sout (s);
-//String replaceString=s1.replace("is","was");
-        
-        jumlahkembali.setText(antrijudul + "");
-        
-        //for (String s : antrijudul) jumlahkembali.setText(antrijudul + ""); String str1 = Integer.toString(a);
-        */
         
         volume = 0;
     }//GEN-LAST:event_tambahActionPerformed
@@ -534,7 +537,6 @@ public class TokoAgaKom extends javax.swing.JFrame {
 
     private void volumekomikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volumekomikActionPerformed
         // TODO add your handling code here:
-        //KELXX_setter_getter mobil_baru = new KELXX_setter_getter();
         int vlmkomik = volumekomik.getSelectedIndex();
 
         switch (vlmkomik) {
@@ -588,26 +590,35 @@ public class TokoAgaKom extends javax.swing.JFrame {
 
     private void cekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cekActionPerformed
         // TODO add your handling code here:
+        String volum = "";
+        
         cek.setVisible(false);
         cekout.setText("");
         jPanel1.setVisible(false);
         jPanel3.setVisible(false);
         cekout.setVisible(true);
         kembali.setVisible(true);
+        reset.setVisible(false);
+        keluar.setVisible(true);
+        jLabel6.setVisible(false);
         
-                
-        String volum = Integer.toString(volume);
+        String t = jumlahtotal.getText();
+        String b = jumlahbayar.getText();
+        String k = jumlahkembali.getText();
         
-        antrijudul.add(judul);
-        antrijudul.add(volum);
-        
-        //uueue<Integer> antrian = new LinkedList<Integer>();
-        //for (String s : antrijudul) sout (s);
-//String replaceString=s1.replace("is","was");
-        
-        cekout.setText(antrijudul + "");
-        
-        //for (String s : antrijudul) jumlahkembali.setText(antrijudul + ""); String str1 = Integer.toString(a);
+        volum = Integer.toString(volume);
+
+        cekout.setText(
+                "==========================================================================================\n"+
+                "-------------------------------------------------------              Toko AgaKom             ---------------------------------------------------------------\n" +
+                "+++++++++++++++++++++++++++++++              Cek Transaksi            ++++++++++++++++++++++++++++++++++++\n"+
+                "==========================================================================================\n\n"+
+                "Detil Transaksi :\n" + antrijudul + "\n\n" +
+                "Total 	: " + t + "\n\n" +
+                "Jumlah Bayar 	: " + b + "\n\n" +
+                "Kembalian 	: " + k
+
+                        );
         
     }//GEN-LAST:event_cekActionPerformed
 
@@ -615,6 +626,13 @@ public class TokoAgaKom extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
+        judulkomik.setSelectedIndex(0);
+        jumlahtotal.setText("");
+        jumlahbayar.setText("");
+        jumlahkembali.setText("");
+        antrijudul.clear();
+
+        
     }//GEN-LAST:event_resetActionPerformed
 
     private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
@@ -625,7 +643,19 @@ public class TokoAgaKom extends javax.swing.JFrame {
         cekout.setVisible(false);
         cek.setVisible(true);
         kembali.setVisible(false);
+        reset.setVisible(true);
+        keluar.setVisible(false);
+        jLabel6.setVisible(true);
     }//GEN-LAST:event_kembaliActionPerformed
+
+    private void keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_keluarActionPerformed
+
+    private void cekoutAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cekoutAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cekoutAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -665,7 +695,7 @@ public class TokoAgaKom extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bayar;
     private javax.swing.JButton cek;
-    private javax.swing.JTextField cekout;
+    private javax.swing.JTextArea cekout;
     private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -673,11 +703,13 @@ public class TokoAgaKom extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> judulkomik;
     private javax.swing.JTextField jumlahbayar;
